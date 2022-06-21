@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Young">
+    
+    <title>
+        
+            算法：回溯 |
+        
+        Zzy&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="shortcut icon" href="/blog/images/logo.svg">
+    
+<link rel="stylesheet" href="/blog/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"zzy2005137.github.io","root":"/blog/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Zzy&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >
+                                存档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives">存档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">算法：回溯</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/blog/images/avatar.svg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Young</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-06-21 21:33:04</span>
+        <span class="mobile">2022-06-21 21:33</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/blog/categories/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>通俗上讲，回溯是一种走不通就回头的算法。</p>
+<p>回溯的基本思想：通过DFS遍历探索所有的可能性，记录或者返回满足条件的情况</p>
+<p>通常构建决策树（sate space tree），然后用 DFS 递归地遍历决策树。</p>
+<p>具体到每一步</p>
+<ul>
+<li>考虑当前元素，更新状态值。</li>
+<li>判断是否满足结果条件，满足则加入结果集然后返回；</li>
+<li>不满足则继续探索<strong>所有</strong>的可能性。即决策树中每个子节点</li>
+<li>每次递归调用之后都要恢复状态值（undo）</li>
+</ul>
+<p>此外，回溯问题常伴随着对结果的<strong>限制条件</strong>，即<strong>用来剪枝的条件</strong></p>
+<p>需思考如何在递归过程中用代码实现剪枝条件</p>
+<blockquote>
+<p>🍋 所以回溯算法常用来解决<strong>列出所有可能解</strong>的问题，用<strong>DFS</strong>列出状态树</p>
+</blockquote>
+<h2 id="问题类型"><a href="#问题类型" class="headerlink" title="问题类型"></a>问题类型</h2><p>回溯问题通常需要分多步，每一步有多种选择，要求找到<strong>所有</strong>满足要求的结果</p>
+<p>常见问题类型有</p>
+<ul>
+<li>组合问题（子集）</li>
+<li>排列问题</li>
+<li>其他形式的需要列举所有满足条件的情况问题。有时可以转换成排列组合问题，如经典的N皇后</li>
+</ul>
+<h3 id="递归图示"><a href="#递归图示" class="headerlink" title="递归图示"></a>递归图示</h3><p>一个递归<br><img src="/blog/2022/06/21/%E5%9B%9E%E6%BA%AF/1.png"></p>
+<p>两个递归（fib）<br><img src="/blog/2022/06/21/%E5%9B%9E%E6%BA%AF/2.png"></p>
+<p>n 个递归<br><img src="/blog/2022/06/21/%E5%9B%9E%E6%BA%AF/3.png"></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// n 个递归</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">recursive</span>(<span class="params">input</span>)&#123;</span><br><span class="line">	 <span class="keyword">for</span> () &#123;</span><br><span class="line">		<span class="title function_">recursive</span>(newInput)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="问题类型-1"><a href="#问题类型-1" class="headerlink" title="问题类型"></a>问题类型</h2><p>回溯问题通常需要分 n 步，每一步有多种选择，要求返回<strong>所有</strong>满足要求的结果</p>
+<ul>
+<li>组合问题（子集）</li>
+<li>排列问题</li>
+<li>其他需要列举所有满足条件的问题，有时可转换为排列组合问题，如经典的N皇后</li>
+</ul>
+<h2 id="组合（子集）问题-combination"><a href="#组合（子集）问题-combination" class="headerlink" title="组合（子集）问题 combination"></a>组合（子集）问题 <strong><code>combination</code></strong></h2><h3 id="全部子集"><a href="#全部子集" class="headerlink" title="全部子集"></a>全部子集</h3><p>问题：给定一个无重复元素的数组，返回所有子集</p>
+<p>算法过程描述 ： 分成 n 步，每步考虑<strong>是否选择</strong>第 i 个数加入集合。</p>
+<p>当当前下标等于数组长度时加入结果集并返回</p>
+<p>时间复杂度O(2^N)</p>
+<h3 id="n-选-k-组合"><a href="#n-选-k-组合" class="headerlink" title="n 选 k 组合"></a>n 选 k 组合</h3><p>问题：给定一个无重复元素的数组，从中选出 k 个元素，列出所有可能的组合</p>
+<p>算法过程描述 ： 组合问题就是求子集的问题，分成 n 步，每步考虑<strong>是否选择</strong>第 i 个数加入组合。</p>
+<p>当已选个数等于 k 时就加入结果集并返回</p>
+<p>时间复杂度O(2^N)</p>
+<h3 id="组合-：存在重复元素"><a href="#组合-：存在重复元素" class="headerlink" title="组合 ：存在重复元素"></a>组合 ：存在重复元素</h3><p>为题描述： 给定一个数组，存在重复元素，求其所有的子集或者从中选出 k 个元素的所有组合</p>
+<p>重点在于<strong>去重</strong></p>
+<p>思想：决策树的剪枝</p>
+<p>剪枝的策略： <strong>在一连串的 m 里面，如果第一个 m 没有放入子集，那么后面的 m 都不能放入子集。</strong></p>
+<p>代码实现： <strong>先排序</strong>，<strong>当在某一步决定跳过某个值为 m 的数字时，跳过所有值为 m 的数字。</strong></p>
+<p><img src="/blog/2022/06/21/%E5%9B%9E%E6%BA%AF/%E7%BB%84%E5%90%88%E5%8E%BB%E9%87%8D.png"></p>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>难度</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>257. 二叉树的所有路径</td>
+<td>🍍</td>
+<td>基础：DFS，传的是原始类型值字符串，所以不需要undo</td>
+</tr>
+<tr>
+<td>113. 路径总和 II</td>
+<td>🍍🍍</td>
+<td>变式，思路与模板与上题类似。DFS前序遍历的基础上做，这次传的是数组，需要undo一下</td>
+</tr>
+<tr>
+<td>39. 组合总和</td>
+<td>🍍🍍</td>
+<td>变式：需要先构建二叉树，两个递归，选&#x2F;不选。注意分析base case ，有三个</td>
+</tr>
+<tr>
+<td>78. 子集</td>
+<td>🍍🍍</td>
+<td>组合问题。思路：dfs递归，每一步从集合中取出一个元素，选择加或者不加入组合中</td>
+</tr>
+<tr>
+<td>90. 子集 II</td>
+<td>🍍🍍</td>
+<td>组合问题 + 避免重复。 思路：在上一题的基础上，先排序，当在某一步决定跳过某个值为 m 的数字时，跳过所有值为 m 的数字。所以先排序再操作</td>
+</tr>
+<tr>
+<td>剑指 Offer II 080. 含有 k 个元素的组合</td>
+<td>🍍</td>
+<td>组合问题，与子集做法类似</td>
+</tr>
+<tr>
+<td>216. 组合总和 III</td>
+<td>🍍🍍</td>
+<td>变式：由k个元素组合，和求和问题的结合，先转换问题</td>
+</tr>
+</tbody></table>
+<h2 id="排列问题permunation"><a href="#排列问题permunation" class="headerlink" title="排列问题permunation"></a>排列问题<code>permunation</code></h2><h3 id="全排列问题"><a href="#全排列问题" class="headerlink" title="全排列问题"></a>全排列问题</h3><p>问题描述：输入一个包含 n 个无重复元素的数组，输出所有全排列</p>
+<p>思路：类比<strong>子集</strong>问题，子集问题分 n 步， 每次决策决定是否将第 i 个数加入子集，因此每次有两个分支，选或者不选</p>
+<p>无重复的n 个数进行全排列，分成n步。每次决策决定选择排列的第 <code>i</code> 个数是什么。第一次由 n 种选择， 第二次由 n-1 种选择，以此类推</p>
+<p>根据思路画出决策树</p>
+<p>注意点：用什么来维护备选的数？</p>
+<ul>
+<li>方法一：用一个 visited 数组记录已经选择过的数</li>
+<li>方法二：原地修改数组元素位置，将数组分成两部分： 选过的数和未选过的数</li>
+</ul>
+<p><img src="/blog/2022/06/21/%E5%9B%9E%E6%BA%AF/4.png"><br><img src="/blog/2022/06/21/%E5%9B%9E%E6%BA%AF/5.png"><br><img src="/blog/2022/06/21/%E5%9B%9E%E6%BA%AF/6.png"></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**  方法二 代码，优雅</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number[]</span>&#125; <span class="variable">nums</span></span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number[][]</span>&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> permute = <span class="keyword">function</span>(<span class="params">nums</span>) &#123;</span><br><span class="line">    <span class="comment">//另一种方法，原地修改数组来记录访问过和未访问过的元素</span></span><br><span class="line">    <span class="keyword">let</span> res = [] </span><br><span class="line">    <span class="title function_">dfs</span>(nums, res, <span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> res </span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">dfs</span>(<span class="params">nums, res, separate</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (separate === nums.<span class="property">length</span>) &#123;</span><br><span class="line">        res.<span class="title function_">push</span>([...nums])</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i = separate; i &lt; nums.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="title function_">swap</span>(nums, i, separate) <span class="comment">//从剩下的数中选一个</span></span><br><span class="line">        <span class="title function_">dfs</span>(nums, res, separate + <span class="number">1</span>)</span><br><span class="line">        <span class="title function_">swap</span>(nums, i, separate)  <span class="comment">// undo</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">swap</span>(<span class="params">nums, i, j</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> temp = nums[i]</span><br><span class="line">    nums[i] = nums[j] </span><br><span class="line">    nums[j] = temp</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="n-选-k-排列"><a href="#n-选-k-排列" class="headerlink" title="n 选 k 排列"></a>n 选 k 排列</h3><p>将递归条件改为 当已选元素个数达到 k 时就返回 即可</p>
+<h3 id="全排列：存在重复元素的情况"><a href="#全排列：存在重复元素的情况" class="headerlink" title="全排列：存在重复元素的情况"></a>全排列：存在重复元素的情况</h3><p>问题描述：给定一个数组，存在重复的元素，输出全排列</p>
+<p>思想：同样是剪枝</p>
+<p>剪枝的策略：<strong>在某一层决策中</strong>，如果选择一个数 m 作为排列的第 i 个位置，那么后面再遇到 m 直接跳过</p>
+<p>代码实现：使用一个 set 来记录访问过的数字</p>
+<table>
+<thead>
+<tr>
+<th>问题</th>
+<th>难度</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>46. 全排列</td>
+<td>🍍🍍</td>
+<td>基础，无重复元素的全排列。使用visited数组记录已使用过的元素</td>
+</tr>
+<tr>
+<td>47. 全排列 II</td>
+<td>🍍🍍🍍</td>
+<td>变式，带重复元素的全排列。在每一层添加Set来记录已经使用过的数字</td>
+</tr>
+</tbody></table>
+<h2 id="剪枝"><a href="#剪枝" class="headerlink" title="剪枝"></a>剪枝</h2><table>
+<thead>
+<tr>
+<th>22. 括号生成</th>
+<th>🐮🐮</th>
+<th>思路：重点画出决策树，&amp;  剪枝条件。 决策树一共2层，每次只有两个选择。剪枝条件为 ( 的个数必须 ≥ ）的个数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>93. 复原 IP 地址</td>
+<td>🐮🐮</td>
+<td>思路：决策树每次有三个选择，选1个，2个 和 3个； 先写出回溯基本框架，实现之后再添加剪枝条件</td>
+</tr>
+<tr>
+<td>79. 单词搜索</td>
+<td>🐮🐮</td>
+<td>有点问题</td>
+</tr>
+<tr>
+<td>51. N 皇后</td>
+<td>🐮🐮🐮</td>
+<td>经典回溯问题，先不考虑对角线位置，将问题降；然后考虑剪枝或者叫做边界条件，巧妙地将对角线位置转换为 x+y &#x3D; C</td>
+</tr>
+</tbody></table>
+<h2 id="集合划分"><a href="#集合划分" class="headerlink" title="集合划分"></a>集合划分</h2><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>难度</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>698. 划分为k个相等的子集</td>
+<td>🍍🍍</td>
+<td></td>
+</tr>
+<tr>
+<td>47. 全排列 II2305. 公平分发饼干</td>
+<td>🍍🍍</td>
+<td>与698类似</td>
+</tr>
+<tr>
+<td>473. 火柴拼正方形</td>
+<td>🍍🍍</td>
+<td>一样的题目</td>
+</tr>
+</tbody></table>
+<p>与子集问题类似，子集问题是遍历每个元素，考虑当前元素是否加入组合。决策树为二叉树</p>
+<p>集合划分问题从元素的角度，也是遍历每个元素考虑加入哪个“bag”，决策树为多叉树</p>
+<p>重点在剪枝：</p>
+<ul>
+<li>第一个元素的选择</li>
+<li><strong>超过平均值</strong></li>
+<li><strong>遇到重复元素</strong>     在回溯过程中，如果出现 <strong>comb</strong> 前后相同的情况，则跳过，避免重复考虑相同的组合情况</li>
+</ul>
+<h2 id="部分题解"><a href="#部分题解" class="headerlink" title="部分题解"></a>部分题解</h2><p><em><strong>*<a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/generate-parentheses/" >22. 括号生成<i class="fas fa-external-link-alt"></i></a>*</strong></em></p>
+<p>理解题意，转换问题 ⇒ 带重复元素的排列问题</p>
+<p>画出决策树： 总共做 2n 次决策， 每次只有两种选择，open <code>(</code> 或者 close <code>)</code></p>
+<p>剪枝条件：什么才是有效的括号组合？ 已选的括号中，open 的个数要大于等于 close</p>
+<p>代码实现 ：</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">dfs</span>(<span class="params">comb, open, close, max, res </span>) &#123;</span><br><span class="line"><span class="comment">//max 代表最多 max 个()组合，决策树深度 2*max</span></span><br><span class="line">    <span class="keyword">if</span> (comb.<span class="property">length</span> === <span class="number">2</span> * max) &#123;</span><br><span class="line">        res.<span class="title function_">push</span>(comb.<span class="title function_">join</span>(<span class="string">&#x27;&#x27;</span>))</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//选择 open</span></span><br><span class="line">    <span class="keyword">if</span> (open &lt; max) &#123;  </span><br><span class="line">        comb.<span class="title function_">push</span>(<span class="string">&#x27;(&#x27;</span>)</span><br><span class="line">        <span class="title function_">dfs</span>(comb,open + <span class="number">1</span>, close, max, res)</span><br><span class="line">        comb.<span class="title function_">pop</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//选择 close</span></span><br><span class="line">    <span class="keyword">if</span> (close &lt; open ) &#123; <span class="comment">//剪枝条件</span></span><br><span class="line">        comb.<span class="title function_">push</span>(<span class="string">&#x27;)&#x27;</span>)</span><br><span class="line">        <span class="title function_">dfs</span>(comb, open, close + <span class="number">1</span>, max, res)</span><br><span class="line">        comb.<span class="title function_">pop</span>()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a class="link"   target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/8967023451" >03 从二叉树遍历到回溯算法 － 小专栏<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://xiaozhuanlan.com/topic/7815396402" >08 排列组合问题：回溯法的不变式与剪枝 － 小专栏 (xiaozhuanlan.com)<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode-solution-leetcode-pp.gitbook.io/leetcode-solution/thinkings/backtrack" >西湖区_回溯<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=NA2Oj9xqaZQ" >How to Code Combinations Using Recursion - YouTube<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=us0cYQXQpxg" >What are Permutations &amp; how do they differ from Combinations? - YouTube<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=DKCbsiDBN6c&list=PLDN4rrl48XKpZkf03iYFl-O29szjTrs_O&index=63" >6 Introduction to Backtracking - Brute Force Approach - YouTube<i class="fas fa-external-link-alt"></i></a>   大叔讲算法</p>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/blog/2022/06/13/%E4%BA%8B%E4%BB%B6%E6%9C%BA%E5%88%B6/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">DOM事件机制</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Young</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%B1%BB%E5%9E%8B"><span class="nav-text">问题类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E5%9B%BE%E7%A4%BA"><span class="nav-text">递归图示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%B1%BB%E5%9E%8B-1"><span class="nav-text">问题类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88%EF%BC%88%E5%AD%90%E9%9B%86%EF%BC%89%E9%97%AE%E9%A2%98-combination"><span class="nav-text">组合（子集）问题 combination</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E9%83%A8%E5%AD%90%E9%9B%86"><span class="nav-text">全部子集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#n-%E9%80%89-k-%E7%BB%84%E5%90%88"><span class="nav-text">n 选 k 组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88-%EF%BC%9A%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0"><span class="nav-text">组合 ：存在重复元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98permunation"><span class="nav-text">排列问题permunation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98"><span class="nav-text">全排列问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#n-%E9%80%89-k-%E6%8E%92%E5%88%97"><span class="nav-text">n 选 k 排列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E6%8E%92%E5%88%97%EF%BC%9A%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-text">全排列：存在重复元素的情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%AA%E6%9E%9D"><span class="nav-text">剪枝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E5%88%92%E5%88%86"><span class="nav-text">集合划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3"><span class="nav-text">部分题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/blog/js/utils.js"></script>
+
+<script src="/blog/js/main.js"></script>
+
+<script src="/blog/js/header-shrink.js"></script>
+
+<script src="/blog/js/back2top.js"></script>
+
+<script src="/blog/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/blog/js/left-side-toggle.js"></script>
+
+<script src="/blog/js/libs/anime.min.js"></script>
+
+<script src="/blog/js/toc.js"></script>
+
+    
+</div>
+
+
+
+</body>
+</html>
