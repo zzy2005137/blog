@@ -16,14 +16,12 @@
     
 <link rel="stylesheet" href="/blog/css/style.css">
 
-    <link rel="shortcut icon" href="/blog/images/logo.svg">
-    
-<link rel="stylesheet" href="/blog/css/font-awesome.min.css">
-
+    <link rel="shortcut icon" href="/blog/images/notion-avatar.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {};
     KEEP.hexo_config = {"hostname":"zzy2005137.github.io","root":"/blog/","language":"en"};
-    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/avatar.svg","favicon":"/images/logo.svg","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/notion-avatar.png","favicon":"/images/notion-avatar.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
   </script>
 <meta name="generator" content="Hexo 6.2.0"></head>
@@ -137,13 +135,11 @@
         
             <div class="article-header">
                 <div class="avatar">
-                    <img src="/blog/images/avatar.svg">
+                    <img src="/blog/images/notion-avatar.png">
                 </div>
                 <div class="info">
                     <div class="author">
                         <span class="name">Young</span>
-                        
-                            <span class="author-label">Lv1</span>
                         
                     </div>
                     <div class="meta-info">
@@ -169,6 +165,14 @@
 
     
     
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>2k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>7 Mins</span>
+        </span>
     
     
 </div>
@@ -206,12 +210,6 @@
 <p>n 个递归<br><img src="/blog/2022/06/21/%E5%9B%9E%E6%BA%AF/3.png"></p>
 <figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// n 个递归</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">recursive</span>(<span class="params">input</span>)&#123;</span><br><span class="line">	 <span class="keyword">for</span> () &#123;</span><br><span class="line">		<span class="title function_">recursive</span>(newInput)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="问题类型-1"><a href="#问题类型-1" class="headerlink" title="问题类型"></a>问题类型</h2><p>回溯问题通常需要分 n 步，每一步有多种选择，要求返回<strong>所有</strong>满足要求的结果</p>
-<ul>
-<li>组合问题（子集）</li>
-<li>排列问题</li>
-<li>其他需要列举所有满足条件的问题，有时可转换为排列组合问题，如经典的N皇后</li>
-</ul>
 <h2 id="组合（子集）问题-combination"><a href="#组合（子集）问题-combination" class="headerlink" title="组合（子集）问题 combination"></a>组合（子集）问题 <strong><code>combination</code></strong></h2><h3 id="全部子集"><a href="#全部子集" class="headerlink" title="全部子集"></a>全部子集</h3><p>问题：给定一个无重复元素的数组，返回所有子集</p>
 <p>算法过程描述 ： 分成 n 步，每步考虑<strong>是否选择</strong>第 i 个数加入集合。</p>
 <p>当当前下标等于数组长度时加入结果集并返回</p>
@@ -503,7 +501,7 @@
         <aside class="page-aside">
             <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%B1%BB%E5%9E%8B"><span class="nav-text">问题类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E5%9B%BE%E7%A4%BA"><span class="nav-text">递归图示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%B1%BB%E5%9E%8B-1"><span class="nav-text">问题类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88%EF%BC%88%E5%AD%90%E9%9B%86%EF%BC%89%E9%97%AE%E9%A2%98-combination"><span class="nav-text">组合（子集）问题 combination</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E9%83%A8%E5%AD%90%E9%9B%86"><span class="nav-text">全部子集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#n-%E9%80%89-k-%E7%BB%84%E5%90%88"><span class="nav-text">n 选 k 组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88-%EF%BC%9A%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0"><span class="nav-text">组合 ：存在重复元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98permunation"><span class="nav-text">排列问题permunation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98"><span class="nav-text">全排列问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#n-%E9%80%89-k-%E6%8E%92%E5%88%97"><span class="nav-text">n 选 k 排列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E6%8E%92%E5%88%97%EF%BC%9A%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-text">全排列：存在重复元素的情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%AA%E6%9E%9D"><span class="nav-text">剪枝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E5%88%92%E5%88%86"><span class="nav-text">集合划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3"><span class="nav-text">部分题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E7%B1%BB%E5%9E%8B"><span class="nav-text">问题类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%92%E5%BD%92%E5%9B%BE%E7%A4%BA"><span class="nav-text">递归图示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%84%E5%90%88%EF%BC%88%E5%AD%90%E9%9B%86%EF%BC%89%E9%97%AE%E9%A2%98-combination"><span class="nav-text">组合（子集）问题 combination</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E9%83%A8%E5%AD%90%E9%9B%86"><span class="nav-text">全部子集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#n-%E9%80%89-k-%E7%BB%84%E5%90%88"><span class="nav-text">n 选 k 组合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%84%E5%90%88-%EF%BC%9A%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0"><span class="nav-text">组合 ：存在重复元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98permunation"><span class="nav-text">排列问题permunation</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E6%8E%92%E5%88%97%E9%97%AE%E9%A2%98"><span class="nav-text">全排列问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#n-%E9%80%89-k-%E6%8E%92%E5%88%97"><span class="nav-text">n 选 k 排列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E6%8E%92%E5%88%97%EF%BC%9A%E5%AD%98%E5%9C%A8%E9%87%8D%E5%A4%8D%E5%85%83%E7%B4%A0%E7%9A%84%E6%83%85%E5%86%B5"><span class="nav-text">全排列：存在重复元素的情况</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%AA%E6%9E%9D"><span class="nav-text">剪枝</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9B%86%E5%90%88%E5%88%92%E5%88%86"><span class="nav-text">集合划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3"><span class="nav-text">部分题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a></li></ol>
     </div>
 </div>
         </aside>
@@ -520,17 +518,7 @@
 
 
 
-
-<script src="/blog/js/utils.js"></script>
-
-<script src="/blog/js/main.js"></script>
-
-<script src="/blog/js/header-shrink.js"></script>
-
-<script src="/blog/js/back2top.js"></script>
-
-<script src="/blog/js/dark-light-toggle.js"></script>
-
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
 
 
 
@@ -540,13 +528,7 @@
 
 <div class="post-scripts">
     
-        
-<script src="/blog/js/left-side-toggle.js"></script>
-
-<script src="/blog/js/libs/anime.min.js"></script>
-
-<script src="/blog/js/toc.js"></script>
-
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
     
 </div>
 
