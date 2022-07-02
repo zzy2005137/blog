@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Young">
+    
+    <title>
+        
+            vue-hackernews-2.0 项目学习笔记 |
+        
+        Zzy&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="shortcut icon" href="/blog/images/notion-avatar.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"zzy2005137.github.io","root":"/blog/","language":"en"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/notion-avatar.png","favicon":"/images/notion-avatar.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Zzy&#39;s Blog
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/"
+                            >
+                                首页
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/archives"
+                            >
+                                存档
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/blog/categories"
+                            >
+                                分类
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/">首页</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/archives">存档</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/blog/categories">分类</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">vue-hackernews-2.0 项目学习笔记</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/blog/images/notion-avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Young</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-07-02 19:40:21</span>
+        <span class="mobile">2022-07-02 19:40</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/blog/categories/Vue/">Vue</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>1.8k Words</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>7 Mins</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>项目地址  <a class="link"   target="_blank" rel="noopener" href="https://github.com/vuejs/vue-hackernews-2.0" >https://github.com/vuejs/vue-hackernews-2.0<i class="fas fa-external-link-alt"></i></a></p>
+<p>在线 demo  <a class="link"   target="_blank" rel="noopener" href="https://vue-hn.herokuapp.com/top" >https://vue-hn.herokuapp.com/top<i class="fas fa-external-link-alt"></i></a></p>
+<p>这是尤雨溪在2019年用 vue-2 写的一个 demo app，目的是为了展示 vue的一些功能</p>
+<p>项目使用了 vue + vue-router + vuex ，并将不同模块代码进行分离。</p>
+<p>麻雀虽小，五脏俱全。虽然有些早了，但有不少值得学习的地方</p>
+<h2 id="项目运行：使用-nvm-切换-node-版本"><a href="#项目运行：使用-nvm-切换-node-版本" class="headerlink" title="项目运行：使用 nvm 切换 node 版本"></a>项目运行：使用 nvm 切换 node 版本</h2><p>遇到的第一个问题： node 版本过高，不兼容</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.csdn.net/qq_30376375/article/details/115877446?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522165529798716782390523354%2522%252C%2522scm%2522%253A%252220140713.130102334..%2522%257D&request_id=165529798716782390523354&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~top_positive~default-1-115877446-null-null.142%5Ev16%5Erank_v33,157%5Ev14%5Enew_3&utm_term=nvm&spm=1018.2226.3001.4187" >(24条消息) nvm介绍、nvm下载安装及使用_前端菜鸡小卒的博客-CSDN博客_nvm<i class="fas fa-external-link-alt"></i></a></p>
+<p>使用 nvm 对不同node版本进行管理</p>
+<p>nvm就是为解决这个问题而产生的，他可以方便的在同一台设备上进行多个node版本之间切换</p>
+<p>踩坑：nvm use 命令需要以<strong>管理员</strong>身份运行，否则报错</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit status <span class="number">1</span>: ��û���㹻��Ȩ��ִ�д˲�����</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由懒加载"><a href="#路由懒加载" class="headerlink" title="路由懒加载"></a>路由懒加载</h2><p>项目的所有路由定义，都是用的懒加载。</p>
+<p>涉及知识点包括 <strong>模块的动态导入</strong> 和 <strong>vue-router 中路由懒加载的使用方法</strong></p>
+<h3 id="模块的动态导入"><a href="#模块的动态导入" class="headerlink" title="模块的动态导入"></a>模块的动态导入</h3><p>ES6 模块的导入方式有两种，第一种的静态导入，即在开头使用 import 关键字导入。语法简单且严格，路径只能是字符串。</p>
+<p>第二种是动态导入，即使用 <code>import()</code> 表达式。（注意：<code>import()</code> 表达式并不是一个函数）</p>
+<p>动态导入的两个要点 </p>
+<ul>
+<li>import 表达式返回一个 Promise ，resolve 值为一个模块对象，包含了所有导出</li>
+<li>当只有一个默认导出时，使用 .default 属性访问</li>
+</ul>
+<p>例子1 </p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">import</span>(modulePath)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function"><span class="params">obj</span> =&gt;</span> &lt;module object&gt;)</span><br><span class="line">  .catch(err =&gt; &lt;loading error, e.g. if no such module&gt;)</span><br></pre></td></tr></table></figure>
+
+<p>例子2 </p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// module.js </span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;zzy&quot;</span>,</span><br><span class="line">  <span class="title function_">sayHi</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//main.js </span></span><br><span class="line"><span class="title function_">import</span>(<span class="string">&quot;./module.js&quot;</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">m</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(m.<span class="property">default</span>.<span class="property">name</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>例子3 </p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//module.js </span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">sayBye</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;bye&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> money = <span class="string">&quot;ssssss&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&quot;zzy&quot;</span>,</span><br><span class="line">  <span class="title function_">sayHi</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//main.js </span></span><br><span class="line"><span class="title function_">import</span>(<span class="string">&quot;./module.js&quot;</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">m</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(m);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出 </span></span><br><span class="line"><span class="comment">// [Module: null prototype] &#123;</span></span><br><span class="line"><span class="comment">//     default: &#123; name: &#x27;zzy&#x27;, sayHi: [Function: sayHi] &#125;,</span></span><br><span class="line"><span class="comment">//     money: &#x27;ssssss&#x27;,</span></span><br><span class="line"><span class="comment">//     sayBye: [Function: sayBye]</span></span><br><span class="line"><span class="comment">//   &#125;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Vue-router-使用懒加载"><a href="#Vue-router-使用懒加载" class="headerlink" title="Vue router 使用懒加载"></a>Vue router 使用懒加载</h3><p><code>component</code> (和 <code>components</code>) 配置接收一个返回 Promise 组件的函数，并且 Vue Router <strong>只会在第一次进入页面时才会获取这个函数</strong>，然后使用缓存数据。</p>
+<p>所以使用方法如下 </p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将</span></span><br><span class="line"><span class="comment">// import UserDetails from &#x27;./views/UserDetails&#x27;</span></span><br><span class="line"><span class="comment">// 替换成</span></span><br><span class="line"><span class="keyword">const</span> <span class="title function_">UserDetails</span> = (<span class="params"></span>) =&gt; <span class="title function_">import</span>(<span class="string">&#x27;./views/UserDetails&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> router = <span class="title function_">createRouter</span>(&#123;</span><br><span class="line">  <span class="comment">// ...</span></span><br><span class="line">  <span class="attr">routes</span>: [&#123; <span class="attr">path</span>: <span class="string">&#x27;/users/:id&#x27;</span>, <span class="attr">component</span>: <span class="title class_">UserDetails</span> &#125;],</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用工厂函数创建路由所需的页面组件"><a href="#使用工厂函数创建路由所需的页面组件" class="headerlink" title="使用工厂函数创建路由所需的页面组件"></a>使用工厂函数创建路由所需的页面组件</h2><p>在hacker-news 项目中，由于Top， Ask，Job 等页面的逻辑和页面样式基本相同，只是要展示的数据类型不同。所以只需要写一个页面，并使用 props 确定要加载的数据类型即可。</p>
+<p>但是在 vue-router 路由定义时，又不能向组件传递 prop 参数来指定页面的数据类型，所以定义一个工厂函数，结合渲染函数，实现根据数据类型创建不同的 ItemListPage 页面。</p>
+<h3 id="渲染函数-（render-function）基础"><a href="#渲染函数-（render-function）基础" class="headerlink" title="渲染函数 （render function）基础"></a>渲染函数 （render function）基础</h3><p>创建组件时，有两种方式告诉Vue要生成什么样的HTML</p>
+<ul>
+<li>template 模板  （大部分时候建议）</li>
+<li>render 函数 （当创建模板需要使用 JS 进行处理时）</li>
+</ul>
+<p>例子：以下两种方式效果是一样的</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// render-example.vue </span></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">import</span> &#123; h &#125; <span class="keyword">from</span> <span class="string">&quot;@vue/runtime-core&quot;</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="title function_">render</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="title function_">h</span>(<span class="string">&quot;div&quot;</span>, &#123;&#125;, <span class="string">&quot;hello word&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br><span class="line">&lt;/script&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//template-example.vue </span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="language-xml">  <span class="tag">&lt;<span class="name">div</span>&gt;</span>hello word<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="language-xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"><span class="keyword">export</span> <span class="keyword">default</span> &#123;&#125;;</span></span></span><br><span class="line"><span class="language-javascript"><span class="language-xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>render 函数生成并返回 VNode 对象， 借助全局方法 <code>h()</code> 实现</p>
+<p><code>h()</code> 方法接收三个参数：</p>
+<ul>
+<li>type  标签名字符串 |  一个组件</li>
+<li>props</li>
+<li>children   字符串 | 子 VNode 数组 | 有插槽的对象（比如 <code>this.$slot.default()</code>）</li>
+</ul>
+<p>在hacker-news 项目中，由于Top， Ask，Job 等页面的逻辑和页面样式基本相同，只是要展示的数据类型不同。所以只需要写一个页面，并使用 props 确定要加载的数据类型即可。</p>
+<p>但是在 vue-router 路由定义时，又不能向组件传递 prop 参数来指定页面的数据类型，所以使用一个工厂函数，来根据数据类型创建不同的 ItemListPage 页面。</p>
+<p>方法如下：</p>
+<h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><p><strong>定义工厂函数</strong></p>
+<p>根据 type 返回一个组件对象。相当于对 ItemList.vue 包装了一层</p>
+<p>使用 render 函数代替模板进行创建，这样就能传入 props ：type （注意：vue3 传 props 语法略有不同）</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义工厂函数 createListView.js</span></span><br><span class="line"><span class="keyword">import</span> <span class="title class_">ItemList</span> <span class="keyword">from</span> <span class="string">&#x27;./ItemList.vue&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="keyword">function</span> <span class="title function_">createListView</span> (type) &#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">`<span class="subst">$&#123;type&#125;</span>-stories-view`</span>,</span><br><span class="line">		<span class="comment">//...</span></span><br><span class="line">    render (h) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="title function_">h</span>(<span class="title class_">ItemList</span>, &#123; <span class="attr">props</span>: &#123; type &#125;&#125;)   <span class="comment">// 核心：render 函数</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>在路由中加载组件</strong></p>
+<p>定义<code>createListView</code> 函数，返回一个函数，满足 component 属性的值要求</p>
+<p>即：<code>component</code> 配置接收一个返回 Promise 组件的函数，实现路由的懒加载</p>
+<p>当然也可以将  <code>createListView</code> 工厂函数导入，然后挨个创建需要的页面作为component 的属性值</p>
+<p>但这样就不是路由懒加载了</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="title function_">createListView</span> = (<span class="params">id</span>) =&gt; <span class="function">() =&gt;</span></span><br><span class="line">  <span class="title function_">import</span>(<span class="string">&quot;../views/CreateListView&quot;</span>).<span class="title function_">then</span>(<span class="function">(<span class="params">m</span>) =&gt;</span> m.<span class="title function_">default</span>(id));</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">createRouter</span>(<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Router</span>(&#123;</span><br><span class="line">    <span class="attr">mode</span>: <span class="string">&quot;history&quot;</span>,</span><br><span class="line">    <span class="attr">routes</span>: [</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&quot;/top/:page(\\d+)?&quot;</span>, <span class="attr">component</span>: <span class="title function_">createListView</span>(<span class="string">&quot;top&quot;</span>) &#125;, </span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&quot;/new/:page(\\d+)?&quot;</span>, <span class="attr">component</span>: <span class="title function_">createListView</span>(<span class="string">&quot;new&quot;</span>) &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&quot;/show/:page(\\d+)?&quot;</span>, <span class="attr">component</span>: <span class="title function_">createListView</span>(<span class="string">&quot;show&quot;</span>) &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&quot;/ask/:page(\\d+)?&quot;</span>, <span class="attr">component</span>: <span class="title function_">createListView</span>(<span class="string">&quot;ask&quot;</span>) &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&quot;/job/:page(\\d+)?&quot;</span>, <span class="attr">component</span>: <span class="title function_">createListView</span>(<span class="string">&quot;job&quot;</span>) &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&quot;/item/:id(\\d+)&quot;</span>, <span class="attr">component</span>: <span class="title class_">ItemView</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&quot;/user/:id&quot;</span>, <span class="attr">component</span>: <span class="title class_">UserView</span> &#125;,</span><br><span class="line">      &#123; <span class="attr">path</span>: <span class="string">&quot;/&quot;</span>, <span class="attr">redirect</span>: <span class="string">&quot;/top&quot;</span> &#125;,</span><br><span class="line">    ],</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>静态加载</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> createListPage <span class="keyword">from</span> <span class="string">&#x27;../views/CreateListView&#x27;</span> </span><br><span class="line"></span><br><span class="line"><span class="comment">//..</span></span><br><span class="line">	<span class="attr">routes</span>:[</span><br><span class="line">		&#123; <span class="attr">path</span>: <span class="string">&quot;/top/:page(\\d+)?&quot;</span>, <span class="attr">component</span>: <span class="title function_">createListPage</span>(<span class="string">&quot;top&quot;</span>) &#125;</span><br><span class="line">	]</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据角度-——-Vuex-基础"><a href="#数据角度-——-Vuex-基础" class="headerlink" title="数据角度 —— Vuex 基础"></a>数据角度 —— Vuex 基础</h2><p><a href="https://zzy2005137.github.io/blog/2022/06/27/vuex%E5%9F%BA%E7%A1%80/">Vuex 学习 0.1 </a></p>
+<p><a href="https://zzy2005137.github.io/blog/2022/06/27/vuex%E6%A8%A1%E5%9D%97/">Vuex 学习0.2 模块 </a></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="动态路由参数设置为可选"><a href="#动态路由参数设置为可选" class="headerlink" title="动态路由参数设置为可选"></a>动态路由参数设置为可选</h3><p>问题： 带参数的动态路由，在没有参数时如何正常显示 ？ </p>
+<p>路由参数后面加 <code>?</code> 代表可选参数</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://router.vuejs.org/zh/guide/essentials/route-matching-syntax.html#%E5%8F%AF%E9%80%89%E5%8F%82%E6%95%B0" >路由的匹配语法 | Vue Router (vuejs.org)<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> routes = [</span><br><span class="line">  <span class="comment">// 匹配 /users 和 /users/posva</span></span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/users/:userId?&#x27;</span> &#125;,</span><br><span class="line">  <span class="comment">// 匹配 /users 和 /users/42</span></span><br><span class="line">  &#123; <span class="attr">path</span>: <span class="string">&#x27;/users/:userId(\\d+)?&#x27;</span> &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h3 id="ItemList页面逻辑"><a href="#ItemList页面逻辑" class="headerlink" title="ItemList页面逻辑"></a>ItemList页面逻辑</h3><p>beforeMount ：调用vuex action，发送网络请求，获取items数据。根据 page 参数设置当前展示页和当前展示 items</p>
+<p>监听 page 变化，重新加载items数据</p>
+<h3 id="vuex-router-sync"><a href="#vuex-router-sync" class="headerlink" title="vuex-router-sync"></a>vuex-router-sync</h3><p>在 vuex 的getter 里发现一个疑惑的点</p>
+<p>在设置当前要展示的items列表时，用到了当前路由的 page 参数， 访问方法如下</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//store/index.js </span></span><br><span class="line"><span class="keyword">const</span> page = <span class="title class_">Number</span>(state.<span class="property">route</span>.<span class="property">params</span>.<span class="property">page</span>) || <span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<p>问题：为什么state 能够访问到 route ？ </p>
+<p>原因：在 app.js 中，使用了 <code>vuex-router-sync</code> 第三方包， 用于把 Vue Router 当前的 <code>$route</code><br>同步为 Vuex 状态的一部分。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://github.com/vuejs/vuex-router-sync/blob/master/README.zh-cn.md" >https://github.com/vuejs/vuex-router-sync/blob/master/README.zh-cn.md<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; sync &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-router-sync&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// sync the router with the vuex store.</span></span><br><span class="line"><span class="comment">// this registers `store.state.route`</span></span><br><span class="line"><span class="title function_">sync</span>(store, router)</span><br></pre></td></tr></table></figure>
+
+<p>通过查询资料，要在 vuex 中访问到 vue router 可以将 router 对象导入 vuex </p>
+<p>访问当前路由用法如下</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">&quot;@/router&quot;</span>;</span><br><span class="line"><span class="keyword">return</span> router.<span class="property">currentRoute</span>.<span class="property">value</span>.<span class="property">params</span>;</span><br></pre></td></tr></table></figure>
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/blog/2022/06/27/vuex%E5%9F%BA%E7%A1%80/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Vuex 学习 0.1</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Young</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E8%BF%90%E8%A1%8C%EF%BC%9A%E4%BD%BF%E7%94%A8-nvm-%E5%88%87%E6%8D%A2-node-%E7%89%88%E6%9C%AC"><span class="nav-text">项目运行：使用 nvm 切换 node 版本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="nav-text">路由懒加载</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9D%97%E7%9A%84%E5%8A%A8%E6%80%81%E5%AF%BC%E5%85%A5"><span class="nav-text">模块的动态导入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vue-router-%E4%BD%BF%E7%94%A8%E6%87%92%E5%8A%A0%E8%BD%BD"><span class="nav-text">Vue router 使用懒加载</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%B7%A5%E5%8E%82%E5%87%BD%E6%95%B0%E5%88%9B%E5%BB%BA%E8%B7%AF%E7%94%B1%E6%89%80%E9%9C%80%E7%9A%84%E9%A1%B5%E9%9D%A2%E7%BB%84%E4%BB%B6"><span class="nav-text">使用工厂函数创建路由所需的页面组件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B8%B2%E6%9F%93%E5%87%BD%E6%95%B0-%EF%BC%88render-function%EF%BC%89%E5%9F%BA%E7%A1%80"><span class="nav-text">渲染函数 （render function）基础</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E7%8E%B0%E6%AD%A5%E9%AA%A4"><span class="nav-text">实现步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%A7%92%E5%BA%A6-%E2%80%94%E2%80%94-Vuex-%E5%9F%BA%E7%A1%80"><span class="nav-text">数据角度 —— Vuex 基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-text">其他</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E8%B7%AF%E7%94%B1%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E4%B8%BA%E5%8F%AF%E9%80%89"><span class="nav-text">动态路由参数设置为可选</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ItemList%E9%A1%B5%E9%9D%A2%E9%80%BB%E8%BE%91"><span class="nav-text">ItemList页面逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#vuex-router-sync"><span class="nav-text">vuex-router-sync</span></a></li></ol></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
