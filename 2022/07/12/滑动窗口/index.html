@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Young">
+    
+    <title>
+        
+            算法：滑动窗口 |
+        
+        Zzy&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="shortcut icon" href="/blog/images/notion-avatar.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"zzy2005137.github.io","root":"/blog/","language":"zh-CN"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/notion-avatar.png","favicon":"/images/notion-avatar.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+  <div
+    class="header-content"
+  >
+    <div class="left">
+      
+      <a class="logo-title" href="/blog">
+        Zzy&#39;s Blog
+      </a>
+    </div>
+
+    <div class="right">
+      <div class="pc">
+        <ul class="menu-list">
+          
+          <li class="menu-item">
+            <a
+              class=""
+              href="/blog/"
+            >
+              首页
+            </a>
+          </li>
+          
+          <li class="menu-item">
+            <a
+              class=""
+              href="/blog/archives"
+            >
+              存档
+            </a>
+          </li>
+          
+          <li class="menu-item">
+            <a
+              class=""
+              href="/blog/categories"
+            >
+              分类
+            </a>
+          </li>
+           
+        </ul>
+      </div>
+      <div class="mobile">
+        
+        <div class="icon-item menu-bar">
+          <div class="menu-bar-middle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-drawer">
+    <ul class="drawer-menu-list">
+      
+      <li class="drawer-menu-item flex-center">
+        <a
+          class=""
+          href="/blog/"
+          >首页</a
+        >
+      </li>
+      
+      <li class="drawer-menu-item flex-center">
+        <a
+          class=""
+          href="/blog/archives"
+          >存档</a
+        >
+      </li>
+      
+      <li class="drawer-menu-item flex-center">
+        <a
+          class=""
+          href="/blog/categories"
+          >分类</a
+        >
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="window-mask"></div>
+</header>
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">算法：滑动窗口</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/blog/images/notion-avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Young</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-07-12 10:57:12</span>
+        <span class="mobile">2022-07-12 10:57</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/blog/categories/%E7%AE%97%E6%B3%95/">算法</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>747 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>2 分钟</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="思路要点"><a href="#思路要点" class="headerlink" title="思路要点"></a>思路要点</h3><p>滑动窗口的基本思想是遍历</p>
+<p>在一次遍历的同时，利用前后两个指针维护一个窗口</p>
+<p>窗口内是满足某个条件的连续子数组</p>
+<p>每次遍历都根据条件判断，是否需要循环右移左指针以保持窗口内元素满足条件</p>
+<p>同时更新最优解</p>
+<p><strong>小结——做题时思考</strong>：</p>
+<ul>
+<li><strong>考虑窗口内元素应该满足什么条件，如何设置状态变量来维护这个条件</strong></li>
+<li><strong>如何移动窗口，窗口长度是否需要改变</strong></li>
+<li><strong>最优解求什么，什么时候更新最优解</strong></li>
+</ul>
+<p>注意：窗口的长度可以是<strong>变化的，不变的，或者是只增不减的</strong></p>
+<h3 id="应用场景，关键词"><a href="#应用场景，关键词" class="headerlink" title="应用场景，关键词"></a>应用场景，关键词</h3><ul>
+<li>数组或字符串</li>
+<li>求满足某个条件的</li>
+<li>最长、最短、长度为 K</li>
+<li>连续子数组&#x2F;子序列</li>
+</ul>
+<p>tips ： 如果明确感觉要用滑动窗口，往最长最短的方向转换问题</p>
+<h3 id="模板（参考）"><a href="#模板（参考）" class="headerlink" title="模板（参考）"></a>模板（参考）</h3><blockquote>
+<p>注意区别点：何时缩小窗口，何时更新最优解</p>
+</blockquote>
+<p><strong>找最长</strong></p>
+<p>算法过程描述：使用左右双指针（L R），R 逐个遍历每个元素</p>
+<p>每次遍历过程中，考虑加入当前元素之后</p>
+<p>如果满足条件：更新最优解</p>
+<p>不满足： L 循环右移</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化左指针和状态变量</span></span><br><span class="line"><span class="keyword">for</span>() &#123;  <span class="comment">//右指针遍历数组</span></span><br><span class="line">	<span class="comment">//考虑加入新元素</span></span><br><span class="line">	 <span class="keyword">while</span>(<span class="comment">//窗口内元素不满足要求) &#123;</span></span><br><span class="line">	<span class="comment">//窗口缩小， L 循环右移，直到窗口内元素重新满足条件 </span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//加入新元素，更新状态值</span></span><br><span class="line">	<span class="comment">//更新最优解	</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>找最短</strong></p>
+<p>算法描述：R 遍历数组</p>
+<p>每次遍历，考虑加入当前元素是否满足条件</p>
+<p>满足：L循环右移，更新最优解</p>
+<p>不满足：下一个</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//初始化左指针和状态变量</span></span><br><span class="line"><span class="keyword">for</span>() &#123;  <span class="comment">//右指针遍历数组</span></span><br><span class="line">	<span class="comment">//考虑加入新元素，更新状态变量</span></span><br><span class="line">	<span class="keyword">while</span>(<span class="comment">//窗口内元素满足要求) &#123;</span></span><br><span class="line">	<span class="comment">//更新最优解</span></span><br><span class="line">	<span class="comment">//窗口缩小，L右移，更新状态变量，直到窗口内元素不满足条件</span></span><br><span class="line">	&#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h2><p><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-substring-without-repeating-characters/" >3. 无重复字符的最长子串<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/minimum-size-subarray-sum/" >209. 长度最小的子数组<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/contains-duplicate-ii/" >219. 存在重复元素 II<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/" >674. 最长连续递增序列<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/longest-repeating-character-replacement/" >424. 替换后的最长重复字符<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/max-consecutive-ones-iii/" >1004. 最大连续1的个数 III<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/maximize-the-confusion-of-an-exam/" >2024. 考试的最大困扰度<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/subarrays-with-k-different-integers/" >992. K 个不同整数的子数组<i class="fas fa-external-link-alt"></i></a></p>
+<h2 id="部分题解"><a href="#部分题解" class="headerlink" title="部分题解"></a>部分题解</h2><p>最大连续1的个数</p>
+<p>窗口长度只增不减，达到当前最大值后，<strong>使用 <code>if</code> 进一出一实现平移</strong></p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> longestOnes = <span class="keyword">function</span>(<span class="params">nums, k</span>) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> countZero = <span class="number">0</span> </span><br><span class="line">    <span class="keyword">let</span> j = <span class="number">0</span> </span><br><span class="line">    <span class="keyword">let</span> res = <span class="number">0</span> </span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; nums.<span class="property">length</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] === <span class="number">0</span>) &#123;</span><br><span class="line">            countZero++</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (countZero &gt; k) &#123;  <span class="comment">//窗口长度只增不减</span></span><br><span class="line">           countZero -= <span class="number">1</span> - nums[j] </span><br><span class="line">            j++</span><br><span class="line">        &#125;</span><br><span class="line">        res = <span class="title class_">Math</span>.<span class="title function_">max</span>(res, i - j + <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a class="link"   target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1V44y1s7zJ?spm_id_from=333.337.search-card.all.click" >精心总结滑动窗口代码模板, 直接搞定80道Leetcode算法题_哔哩哔哩_bilibili<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/blog/2022/07/09/vue-grocery%E5%BC%80%E5%8F%91%E6%97%A5%E5%BF%97/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">vue-grocery-store 开发日志</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Young</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%9D%E8%B7%AF%E8%A6%81%E7%82%B9"><span class="nav-text">思路要点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF%EF%BC%8C%E5%85%B3%E9%94%AE%E8%AF%8D"><span class="nav-text">应用场景，关键词</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E6%9D%BF%EF%BC%88%E5%8F%82%E8%80%83%EF%BC%89"><span class="nav-text">模板（参考）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE"><span class="nav-text">题目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E9%A2%98%E8%A7%A3"><span class="nav-text">部分题解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83"><span class="nav-text">参考</span></a>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
