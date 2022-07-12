@@ -1,5 +1,5 @@
 ---
-title: Vuex 学习 0.1
+title: Vuex 基础 0.1
 categories: Vue 
 ---
 
