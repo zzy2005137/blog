@@ -12,7 +12,7 @@ sticky: 999
 
 ### 建议开发步骤
 
-在[How to build a web app: A beginner's guide (2021)]([How to build a web app: A beginner's guide (2021) (budibase.com)](https://www.budibase.com/blog/how-to-make-a-web-app/))这篇博客里，介绍了如何设计并开发一款Web App。作者将过程分为四个阶段，十二个步骤，分别是：
+在[How to build a web app: A beginner's guide (2021)](https://www.budibase.com/blog/how-to-make-a-web-app/))这篇博客里，介绍了如何设计并开发一款Web App。作者将过程分为四个阶段，十二个步骤，分别是：
 
 **Ideation stage**
 
