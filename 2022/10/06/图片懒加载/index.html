@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Young">
+    
+    <title>
+        
+            图片懒加载实现方式（modern way） |
+        
+        Zzy&#39;s Blog
+    </title>
+    
+<link rel="stylesheet" href="/blog/css/style.css">
+
+    <link rel="shortcut icon" href="/blog/images/notion-avatar.png">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/css/font-awesome.min.css">
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"zzy2005137.github.io","root":"/blog/","language":"zh-CN"};
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066CC","avatar":"/images/notion-avatar.png","favicon":"/images/notion-avatar.png","article_img_align":"left","left_side_width":"260px","content_max_width":"920px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":false,"preload":false},"code_copy":{"enable":false,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.5"};
+    KEEP.language_ago = {"second":"%s 秒前","minute":"%s 分钟前","hour":"%s 小时前","day":"%s 天前","week":"%s 周前","month":"%s 个月前","year":"%s 年前"};
+  </script>
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+  <div
+    class="header-content"
+  >
+    <div class="left">
+      
+      <a class="logo-title" href="/blog">
+        Zzy&#39;s Blog
+      </a>
+    </div>
+
+    <div class="right">
+      <div class="pc">
+        <ul class="menu-list">
+          
+          <li class="menu-item">
+            <a
+              class=""
+              href="/blog/"
+            >
+              首页
+            </a>
+          </li>
+          
+          <li class="menu-item">
+            <a
+              class=""
+              href="/blog/archives"
+            >
+              存档
+            </a>
+          </li>
+          
+          <li class="menu-item">
+            <a
+              class=""
+              href="/blog/categories"
+            >
+              分类
+            </a>
+          </li>
+           
+        </ul>
+      </div>
+      <div class="mobile">
+        
+        <div class="icon-item menu-bar">
+          <div class="menu-bar-middle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="header-drawer">
+    <ul class="drawer-menu-list">
+      
+      <li class="drawer-menu-item flex-center">
+        <a
+          class=""
+          href="/blog/"
+          >首页</a
+        >
+      </li>
+      
+      <li class="drawer-menu-item flex-center">
+        <a
+          class=""
+          href="/blog/archives"
+          >存档</a
+        >
+      </li>
+      
+      <li class="drawer-menu-item flex-center">
+        <a
+          class=""
+          href="/blog/categories"
+          >分类</a
+        >
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="window-mask"></div>
+</header>
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">图片懒加载实现方式（modern way）</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/blog/images/notion-avatar.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Young</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2022-10-06 21:43:57</span>
+        <span class="mobile">2022-10-06 21:43</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/blog/categories/javascript/">javascript</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+
+    
+    
+        <span class="article-wordcount article-meta-item">
+            <i class="fas fa-file-word"></i>&nbsp;<span>401 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+            <i class="fas fa-clock"></i>&nbsp;<span>1 分钟</span>
+        </span>
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="懒加载原理与实现"><a href="#懒加载原理与实现" class="headerlink" title="懒加载原理与实现"></a>懒加载原理与实现</h3><p>原理 ：当图片出现在视图窗口，或者即将出现的时候才去加载</p>
+<p>实现方法</p>
+<ul>
+<li>使用 img 的 <code>loading</code> 属性</li>
+<li>使用 <code>Intersection Observer API</code></li>
+</ul>
+<h3 id="loading-属性"><a href="#loading-属性" class="headerlink" title="loading 属性"></a>loading 属性</h3><p>将 img 的 loading 属性设置为 lazy</p>
+<p>注意：需设置 img 的宽高</p>
+<p>代码测试如下，可以通过开发者工具-网络查看图片随着滚动的加载情况</p>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line">      <span class="keyword">let</span> fragment = <span class="keyword">new</span> <span class="title class_">DocumentFragment</span>();</span><br><span class="line">      <span class="keyword">let</span> width = <span class="number">400</span>;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">        <span class="keyword">let</span> img = <span class="variable language_">document</span>.<span class="title function_">createElement</span>(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">        img.<span class="title function_">setAttribute</span>(<span class="string">&quot;loading&quot;</span>, <span class="string">&quot;lazy&quot;</span>);</span><br><span class="line">        img.<span class="property">src</span> = <span class="string">`https://placekitten.com/<span class="subst">$&#123;width + i&#125;</span>`</span>;   <span class="comment">//获取随机图片</span></span><br><span class="line">        img.<span class="property">width</span> = <span class="string">&quot;400&quot;</span>;</span><br><span class="line">        img.<span class="property">height</span> = <span class="string">&quot;400&quot;</span>;</span><br><span class="line">        fragment.<span class="title function_">append</span>(img);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">let</span> body = <span class="variable language_">document</span>.<span class="title function_">querySelector</span>(<span class="string">&quot;body&quot;</span>);</span><br><span class="line">      body.<span class="title function_">append</span>(fragment);</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a class="link"   target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/img#%E6%B5%8F%E8%A7%88%E5%99%A8%E5%85%BC%E5%AE%B9%E6%80%A7" >loading 属性浏览器兼容性<i class="fas fa-external-link-alt"></i></a></p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://web.dev/browser-level-image-lazy-loading/#images-should-include-dimension-attributes" >使用 loading 属性实现图片懒加载需要设置图片尺寸<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="intersection-observer"><a href="#intersection-observer" class="headerlink" title="intersection observer"></a>intersection observer</h3><p><code>Intersection Observer API</code> 用于观察某个元素是否和视图（或者其他元素）发生交叉</p>
+<p>换句话说，可以用来检测某个元素是否出现在视图窗口上</p>
+<p>懒加载实现</p>
+<ul>
+<li>创建 img 时使用 data-src 预存 url</li>
+<li>创建 observer ，传入回调函数</li>
+<li>在回调函数中<ul>
+<li>获取当前对象，以及 data-src</li>
+<li>修改 img src 进行加载</li>
+<li>解除观察</li>
+</ul>
+</li>
+<li>观察每个 lazy img</li>
+</ul>
+<figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> lazyImgObserver = <span class="keyword">new</span> <span class="title class_">IntersectionObserver</span>(<span class="function">(<span class="params">entries</span>) =&gt;</span> &#123;</span><br><span class="line">  entries.<span class="title function_">forEach</span>(<span class="function">(<span class="params">entry</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (entry.<span class="property">isIntersecting</span>) &#123;</span><br><span class="line">      <span class="keyword">let</span> lazyImg = entry.<span class="property">target</span>; <span class="comment">// entry.target 指向观察对象</span></span><br><span class="line">      lazyImg.<span class="property">src</span> = lazyImg.<span class="property">dataset</span>.<span class="property">src</span>; <span class="comment">// 从dataset接口获取自定义的数据属性 data-*</span></span><br><span class="line">      lazyImgObserver.<span class="title function_">unobserve</span>(entry); <span class="comment">// 解除观察</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">let</span> imgs = <span class="variable language_">document</span>.<span class="title function_">querySelectorAll</span>(<span class="string">&quot;img&quot;</span>);</span><br><span class="line">imgs.<span class="title function_">forEach</span>(<span class="function">(<span class="params">img</span>) =&gt;</span> &#123;</span><br><span class="line">  lazyImgObserver.<span class="title function_">observe</span>(img);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><a class="link"   target="_blank" rel="noopener" href="https://blog.webdevsimplified.com/2022-01/intersection-observer/" >webDevSimplify 教程<i class="fas fa-external-link-alt"></i></a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/HTML/Howto/Use_data_attributes">使用 <code>data-*</code> 数据属性</a></p>
+
+        </div>
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/blog/2022/07/26/%E9%97%AD%E5%8C%85/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">闭包与高阶函数</span>
+                                <span class="post-nav-item">下一篇</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2022</span>
+              -
+            
+            2022&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Young</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动&nbsp;|&nbsp;主题&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.5</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="tools-item page-aside-toggle">
+                <i class="fas fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+        <aside class="page-aside">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%87%92%E5%8A%A0%E8%BD%BD%E5%8E%9F%E7%90%86%E4%B8%8E%E5%AE%9E%E7%8E%B0"><span class="nav-text">懒加载原理与实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#loading-%E5%B1%9E%E6%80%A7"><span class="nav-text">loading 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#intersection-observer"><span class="nav-text">intersection observer</span></a></li></ol>
+    </div>
+</div>
+        </aside>
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/utils.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/main.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/header-shrink.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/back2top.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/dark-light-toggle.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        <script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/left-side-toggle.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/libs/anime.min.js"></script><script src="//cdn.jsdelivr.net/npm/hexo-theme-keep@3.4.5/source/js/toc.js"></script>
+    
+</div>
+
+
+
+</body>
+</html>
